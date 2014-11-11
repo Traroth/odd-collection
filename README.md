@@ -12,7 +12,7 @@ So I added a bunch of methods to obtain the reversed effect of some of the java.
 
 <h3>DoubleMap</h3>
 
-An implementation of BijectiveMap using 2 HashMaps, one <K, V> and another <V, K>. I think better implementations of BijectiveMap could be found, but for now, I just want something to experiment with.
+An implementation of BijectiveMap using 2 HashMaps, one K, V and another V, K. I think better implementations of BijectiveMap could be found, but for now, I just want something to experiment with.
 
 <h3>MultiDimMap</h3>
 
