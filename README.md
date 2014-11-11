@@ -1,3 +1,5 @@
+Work in progress...
+
 I have some ideas about collections I would like to test. The language will be Java 8, and the exact purpose is unclear. What I mean is: I don't *need* those collections for a given projet, so their usefulness may be debatable. They are just ideas I find interesting and I would like to try to implement.
 
 Here they come:
