@@ -52,16 +52,22 @@ public class DoubleMap<K, V> implements BijectiveMap<K, V> {
 			
 			return null;
 		} else if (candidateKey==null && candidateValue!=null) {
+			K curK = reverse.put(value, key);
+			straight.remove(curK);
+			straight.put(key, value);
 			
+			return null;
 		} else if (candidateKey!=null && candidateValue==null) {
+			V curV = straight.put(key,  value);
+			reverse.remove(curV);
+			reverse.put(value, key);
 			
+			return curV;
 		} else if (!(value.equals(candidateValue) && key.equals(candidateKey))) {
 			throw new IllegalArgumentException("");
 		} else {
 			return value;
 		}
-		
-		
 	}
 
 	@Override
