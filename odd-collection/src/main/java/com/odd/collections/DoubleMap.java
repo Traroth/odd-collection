@@ -43,15 +43,25 @@ public class DoubleMap<K, V> implements BijectiveMap<K, V> {
 
 	@Override
 	public V put(K key, V value) {
-		if (straight.containsKey(key)) {
-			K reverseValue = reverse.get(straight.get(key));
+		V candidateValue = straight.get(key);
+		K candidateKey = reverse.get(value);
+		
+		if (candidateKey==null && candidateValue==null) {
+			straight.put(key, value);
+			reverse.put(value, key);
 			
-			if (reverseValue == null) {
-				
-			} else if (!reverse.get(reverseValue).equals(key)) {
-				//error
-			} // else do nothing: key/value pair is already in the map
-		} 
+			return null;
+		} else if (candidateKey==null && candidateValue!=null) {
+			
+		} else if (candidateKey!=null && candidateValue==null) {
+			
+		} else if (!(value.equals(candidateValue) && key.equals(candidateKey))) {
+			throw new IllegalArgumentException("");
+		} else {
+			return value;
+		}
+		
+		
 	}
 
 	@Override
