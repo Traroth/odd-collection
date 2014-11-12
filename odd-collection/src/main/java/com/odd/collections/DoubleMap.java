@@ -7,9 +7,9 @@ import java.util.Set;
 
 public class DoubleMap<K, V> implements BijectiveMap<K, V> {
 
-	Map<K, V> straight;
+	private Map<K, V> straight;
 	
-	Map<V, K> reverse;
+	private Map<V, K> reverse;
 	
 	public DoubleMap() {
 		straight = new HashMap<>();
@@ -64,7 +64,7 @@ public class DoubleMap<K, V> implements BijectiveMap<K, V> {
 			
 			return curV;
 		} else if (!(value.equals(candidateValue) && key.equals(candidateKey))) {
-			throw new IllegalArgumentException("");
+			throw new IllegalArgumentException("Key and value are both present, but not in the same pair. Impossible to but that pair in the map");
 		} else {
 			return value;
 		}
@@ -72,8 +72,13 @@ public class DoubleMap<K, V> implements BijectiveMap<K, V> {
 
 	@Override
 	public V remove(Object key) {
-		// TODO Auto-generated method stub
-		return null;
+		V value = straight.remove(key);
+		
+		if (value != null) {
+			reverse.remove(value);
+		}
+		
+		return value;
 	}
 
 	@Override
@@ -114,8 +119,13 @@ public class DoubleMap<K, V> implements BijectiveMap<K, V> {
 
 	@Override
 	public K removeKey(V value) {
-		// TODO Auto-generated method stub
-		return null;
+		K key = reverse.remove(value);
+		
+		if (key != null) {
+			straight.remove(key);
+		}
+		
+		return key;
 	}
 
 }
