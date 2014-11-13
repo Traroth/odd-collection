@@ -37,4 +37,4 @@ How? To sum it up, the list is composed of several linked arrays. Each array is 
 
 Of course, you can choose the size of the chunks of your list on instanciation. So if you choose a size of one, the list will behave roughly like a LinkedList, and if you choose a huge size, the list will behave roughly like an ArrayList.
 
-Odd-collection is distributed under the <a href="https://www.gnu.org/copyleft/lesser.html">LGPL v3</a> licence.
+<b>Odd-collection is distributed under the <a href="https://www.gnu.org/copyleft/lesser.html">LGPL v3</a> licence.</b>
