@@ -21,3 +21,20 @@ An interface for multidimensional map. This one doesn't inherit from java.util.M
 <h3>NestedMap</h3>
 
 An implementation of MultiDimMap. Each Entry of the map can contain another map.
+
+<h3>ChunkyList</h3>
+
+ChunkyList is the most ambitious data structure I will try to implement here (yet?).
+
+As you probably know, there are 2 main implementations of a list:
+
+-in an array (java.util.ArrayList, for example), which is fast when you read data, but slow when you insert, because you have to shift every element of the array located after the inserted element
+-as a structure of chained elements (java.util.LinkedList), which is fast when you insert an element, because you just have to change linking of the previous and next elements, but slow when you read, because you have to scan across the list to the element you're looking for
+
+ChunkyList is an attempt to obtain combine those approaches in order to get an average between the advantages and the drawbacks.
+
+How? To sum it up, the list is composed of several linked arrays. Each array is wrapped in an object called a chunk, with a maximal size, and the different chunks are linked. So when you insert a new element, only the elements of the chunk where you insert need to be shifted (the overflow will be added to a new chunk). And when you want to access an element, you scan across the chunks until you find the right one, and then you access it like in any array.
+
+Of course, you can choose the size of the chunks of your list on instanciation. So if you choose a size of one, the list will behave roughly like a LinkedList, and if you choose a huge size, the list will behave roughly like an ArrayList.
+
+Odd-collection is distributed under the <a href="https://www.gnu.org/copyleft/lesser.html">LGPL v3</a> licence.
