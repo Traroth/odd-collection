@@ -8,7 +8,7 @@ Here they come:
 
 An interface inheriting java.util.Map, but working both ways, which means keys are unique, but also are values. 
 
-So I added a bunch of methods to obtain the reversed effect of some of the java.util.Map methods. Consequence of the concept is: putAll method throws a UnsupportedOperationException, because I cannot guarantee all elements of the given Map will be added to the BijectiveMap. Some could be squeezed and the result would be too unpredictable.
+So I added a bunch of methods to obtain the reversed effect of some of the java.util.Map methods. Consequence of the concept is: putAll method, which is an optional method, throws a UnsupportedOperationException, because I cannot guarantee all elements of the given Map will be added to the BijectiveMap. Some could be squeezed and it couldn't be guaranteed that if you tried to put a Map with 5 entries, your receiving BijectiveMap would contain 5 more elements as a rsult. It could be implemented, but the result would be too unreliable, so I prefered not to.
 
 <h3>DoubleMap</h3>
 
