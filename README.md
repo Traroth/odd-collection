@@ -28,8 +28,10 @@ ChunkyList is the most ambitious data structure I will try to implement here (ye
 
 As you probably know, there are 2 main implementations of a list:
 
--in an array (java.util.ArrayList, for example), which is fast when you read data, but slow when you insert, because you have to shift every element of the array located after the inserted element
--as a structure of chained elements (java.util.LinkedList), which is fast when you insert an element, because you just have to change linking of the previous and next elements, but slow when you read, because you have to scan across the list to the element you're looking for
+<ul>
+<li>in an array (java.util.ArrayList, for example), which is fast when you read data, but slow when you insert, because you have to shift every element of the array located after the inserted element</li>
+<li>as a structure of chained elements (java.util.LinkedList), which is fast when you insert an element, because you just have to change linking of the previous and next elements, but slow when you read, because you have to scan across the list to the element you're looking for</li>
+</ul>
 
 ChunkyList is an attempt to obtain combine those approaches in order to get an average between the advantages and the drawbacks.
 
