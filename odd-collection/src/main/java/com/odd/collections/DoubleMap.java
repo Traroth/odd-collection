@@ -52,17 +52,17 @@ public class DoubleMap<K, V> implements BijectiveMap<K, V> {
 			
 			return null;
 		} else if (candidateKey==null && candidateValue!=null) {
-			K curK = reverse.put(value, key);
-			straight.remove(curK);
-			straight.put(key, value);
-			
-			return null;
-		} else if (candidateKey!=null && candidateValue==null) {
 			V curV = straight.put(key,  value);
 			reverse.remove(curV);
 			reverse.put(value, key);
 			
 			return curV;
+		} else if (candidateKey!=null && candidateValue==null) {
+			K curK = reverse.put(value, key);
+			straight.remove(curK);
+			straight.put(key, value);
+			
+			return null;
 		} else if (!(value.equals(candidateValue) && key.equals(candidateKey))) {
 			throw new IllegalArgumentException("Key and value are both present, but not in the same pair. Impossible to but that pair in the map");
 		} else {
@@ -127,5 +127,5 @@ public class DoubleMap<K, V> implements BijectiveMap<K, V> {
 		
 		return key;
 	}
-
+	
 }
