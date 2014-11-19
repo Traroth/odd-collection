@@ -5,23 +5,23 @@ import java.util.Collection;
 
 public class ChunkyList<T> extends AbstractList<T> {
 	
-protected Chunk firstChunk;
+	private Chunk firstChunk;
 	
-	protected Chunk lastChunk;
+	private Chunk lastChunk;
 	
-	protected int chunkSize;
+	private int chunkSize;
 	
-	protected int size;
+	private int size;
 	
-	protected class Chunk {
+	private class Chunk {
 		
-		protected T[] array;
+		private T[] array;
 		
-		protected int used;
+		private int used;
 		
-		protected Chunk previousChunk;
+		private Chunk previousChunk;
 		
-		protected Chunk nextChunk;
+		private Chunk nextChunk;
 		
 		public Chunk() {
 			array = (T[]) new Object[chunkSize];
@@ -43,7 +43,28 @@ protected Chunk firstChunk;
 		public void setNextChunk(Chunk nextChunk) {
 			this.nextChunk = nextChunk;
 		}
+
+		public T[] getArray() {
+			return array;
+		}
+
+		public void setArray(T[] array) {
+			this.array = array;
+		}
+
+		public int getUsed() {
+			return used;
+		}
+
+		public void setUsed(int used) {
+			this.used = used;
+		}
 		
+		public void shift(int begin, int end, int step) {
+			for (int i=end; i>=begin; i--) {
+				array[i+step] = array[i];
+			}
+		}
 	}
 	
 	public ChunkyList() {
@@ -58,10 +79,12 @@ protected Chunk firstChunk;
 		//TODO
 	}
 
+	@Override
 	public int size() {
 		return size;
 	}
 
+	@Override
 	public boolean isEmpty() {
 		return size==0;
 	}
@@ -72,16 +95,35 @@ protected Chunk firstChunk;
 		return null;
 	}
 	
+	@Override
 	public void add(int index, T element) {
 		
 	}
 	
+	@Override
 	public T remove(int index) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 	
+	private void insertNewChunk(Chunk previous, Chunk next) {
+		Chunk newChunk = new Chunk();
+		
+		previous.setNextChunk(newChunk);
+		next.setPreviousChunk(newChunk);
+		
+		newChunk.setPreviousChunk(previous);
+		newChunk.setNextChunk(next);
+	}
+	
+	private void insert(Chunk chunk, T element, int positionInChunk) {
+		int toMove = chunkSize - chunk.getUsed();
+		
+		if (toMove > 0) {
+			
+		}
+	}
 
-	protected static int DEFAULT_CHUNK_SIZE = 10;
+	private static int DEFAULT_CHUNK_SIZE = 10;
 
 }
