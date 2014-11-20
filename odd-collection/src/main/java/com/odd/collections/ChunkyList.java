@@ -73,6 +73,12 @@ public class ChunkyList<T> extends AbstractList<T> {
 	
 	public ChunkyList(int chunkSize) {
 		this.chunkSize = chunkSize;
+		
+		Chunk first = new Chunk();
+		firstChunk = first;
+		lastChunk = first;
+		
+		size = 0;
 	}
 	
 	public ChunkyList(Collection<? extends T> c) {
@@ -97,6 +103,11 @@ public class ChunkyList<T> extends AbstractList<T> {
 	
 	@Override
 	public void add(int index, T element) {
+		if (index > size) {
+			throw new IndexOutOfBoundsException("index: "+index+" ; size: "+size);
+		}
+		
+		
 		
 	}
 	
@@ -120,6 +131,15 @@ public class ChunkyList<T> extends AbstractList<T> {
 		int toMove = chunkSize - chunk.getUsed();
 		
 		if (toMove > 0) {
+			
+		}
+	}
+	
+	private Chunk findChunk(int index) {
+		// TODO optimize by starting at the end when faster
+		boolean b = true;
+		
+		while (b) {
 			
 		}
 	}
