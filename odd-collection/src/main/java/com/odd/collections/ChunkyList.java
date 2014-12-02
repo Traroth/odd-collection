@@ -164,7 +164,7 @@ public class ChunkyList<T> extends AbstractList<T> {
 		
 		Chunk current;
 		
-		// This isn't 100% optimal, because of the size of the chunks, but it's not bad anyway
+		// This isn't 100% optimal, because the size of the chunks can be different, but it's not bad anyway
 		if (startFirst) {
 			count = 0;
 			current = firstChunk;
