@@ -67,6 +67,26 @@ public class ChunkyList<T> extends AbstractList<T> {
 		}
 	}
 	
+	private class Combo {
+		private Chunk chunk;
+		
+		private int position;
+
+		public Combo(ChunkyList<T>.Chunk chunk, int position) {
+			super();
+			this.chunk = chunk;
+			this.position = position;
+		}
+
+		public Chunk getChunk() {
+			return chunk;
+		}
+
+		public int getPosition() {
+			return position;
+		}
+	}
+	
 	public ChunkyList() {
 		this(DEFAULT_CHUNK_SIZE);
 	}
@@ -135,12 +155,48 @@ public class ChunkyList<T> extends AbstractList<T> {
 		}
 	}
 	
-	private Chunk findChunk(int index) {
-		// TODO optimize by starting at the end when faster
+	private Combo findChunk(int index) {
 		boolean b = true;
 		
+		boolean startFirst = startFirst(index);
+		
+		int count;
+		
+		Chunk current;
+		
+		// This isn't 100% optimal, because of the size of the chunks, but it's not bad anyway
+		if (startFirst) {
+			count = 0;
+			current = firstChunk;
+		} else {
+			count = size;
+			current = lastChunk;
+		}
+
 		while (b) {
-			
+			if (startFirst) {
+				if (count + current.getUsed() > index) {
+					b=false;
+				} else {
+					count = count + current.getUsed();
+				}
+			} else {
+				if (count - current.getUsed() < index) {
+					b=false;
+				} else {
+					count = count - current.getUsed();
+				}
+			}
+		}
+		return new Combo(current, count);
+	}
+	
+	
+	private boolean startFirst(int pos) {
+		if (pos <= size/2) {
+			return true;
+		} else {
+			return false;
 		}
 	}
 
