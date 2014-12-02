@@ -188,7 +188,16 @@ public class ChunkyList<T> extends AbstractList<T> {
 				}
 			}
 		}
-		return new Combo(current, count);
+		
+		int position;
+		
+		if (startFirst) {
+			position = index - count;
+		} else {
+			position = count - (current.getUsed() - index); // TODO pas bon...
+		}
+		
+		return new Combo(current, position);
 	}
 	
 	
